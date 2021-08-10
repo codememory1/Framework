@@ -6,4 +6,4 @@ view:
   useCache: true
 
   # Which template engine to use to load the template
-  engine: Codememory\Components\View\Engines\TwigEngine
+  engine: Codememory\Components\View\Engines\BigEngine

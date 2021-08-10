@@ -12,15 +12,9 @@ routing:
 
   # Created routes
   _routes:
-    test:
+    index:
       path: '/'
       method: 'GET'
       class:
         controller: App\Controllers\MainController
         method: main
-    test2:
-      path: 'test'
-      method: 'GET'
-      class:
-        controller: App\Controllers\TestController
-        method: web
