@@ -1,0 +1,15 @@
+logging:
+  # General logger settings
+  _general:
+    # Date format for logging
+    dateTimeFormat: 'Y-m-d H:i:s'
+
+    # Data format how data will be written to the log
+    recordingFormat: "[*datetime*] *level_name* > *message* *context* *extra*\n"
+
+  # Creation of loggers
+  _loggers:
+    createUser:
+      type: redis
+      redisKey: monolog
+      level: error

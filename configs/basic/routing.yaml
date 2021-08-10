@@ -1,0 +1,26 @@
+routing:
+  # Basic routing settings
+  _settings:
+    # Path where all php files with routes will be located
+    pathWithRoutes: routes/
+
+    # Software namespace
+    softwareNamespace: App\Software\
+
+    # Suffix for files that will contain routes
+    routesFileSuffix: '-routes'
+
+  # Created routes
+  _routes:
+    test:
+      path: '/'
+      method: 'GET'
+      class:
+        controller: App\Controllers\MainController
+        method: main
+    test2:
+      path: 'test'
+      method: 'GET'
+      class:
+        controller: App\Controllers\TestController
+        method: web

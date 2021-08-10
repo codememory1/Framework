@@ -1,0 +1,6 @@
+framework:
+  # Path to all controllers
+  pathWithControllers: app/Controllers
+
+  # Controller namespace
+  namespaceForControllers: App\Controllers

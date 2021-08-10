@@ -1,0 +1,26 @@
+big:
+  # Displaying errors
+  displayErrors: true
+
+  # The path where all templates are located
+  pathToTemplates: /
+
+  # Whether to use template caching
+  cache: true
+
+  # Debugger config
+  debugger:
+    # How many maximum to display lines of code on the screen
+    # relative to the line with an error
+    maxLines: 20
+
+    # Whether to interrupt the following code after the connected
+    # template if there is an error in the template
+    interruptFollowingCode: true
+
+    # What kinds of errors to display in debugger
+    errorTypes:
+      - E_BIG_ALL     # All kinds of mistakes
+#      - E_BIG_WARNING # Only warnings
+#      - E_BIG_TRAGIC  # Only tragic mistakes
+#      - E_BIG_SYNTAX  # Syntax errors only

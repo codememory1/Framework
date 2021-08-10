@@ -1,0 +1,12 @@
+providers:
+  translator:
+    class: Codememory\Components\Translator\Translation
+    construct:
+      request: '@provider=request'
+  css-collector:
+    class: Codememory\Components\Collectors\CssCollector
+  mailer:
+    class: Codememory\Components\Mail\MailerPack
+    construct:
+      serverWorker: '@object=Codememory\Components\Mail\Workers\ServerWorker'
+      userWorker: '@object=Codememory\Components\Mail\Workers\UserWorker'

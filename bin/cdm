@@ -1,0 +1,71 @@
+#!/usr/bin/env php
+<?php
+
+use Codememory\Components\Configuration\Commands\AllBindsCommand;
+use Codememory\Components\Configuration\Commands\ConfigCacheStateCommand;
+use Codememory\Components\Configuration\Commands\RefreshConfigCacheCommand;
+use Codememory\Components\Configuration\Commands\StateBindsCacheCommand;
+use Codememory\Components\Configuration\Config;
+use Codememory\Components\Database\Connection\Connection;
+use Codememory\Components\Environment\Commands\DeleteEnvCacheCommand;
+use Codememory\Components\Environment\Commands\UpdateEnvCacheCommand;
+use Codememory\Components\GlobalConfig\Commands\BackupCommand;
+use Codememory\Components\GlobalConfig\Commands\InitConfigCommand;
+use Codememory\Components\GlobalConfig\Commands\InitFromBackupCommand;
+use Codememory\Components\GlobalConfig\Commands\MergeConfigCommand;
+use Codememory\Components\Translator\Commands\RefreshTranslationsCacheCommand;
+use Codememory\Components\Validator\Commands\MakeValidationCommand;
+use Codememory\FileSystem\File;
+use Codememory\Routing\Commands\MakeSoftwareCommand;
+use Codememory\Routing\Commands\RouteListCommand;
+use Kernel\Commands\MakeControllerCommand;
+use Symfony\Component\Console\Application;
+use Codememory\Components\Database\Pack\Console as DatabasePackConsole;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+$connection = new Connection();
+$filesystem = new File();
+$application = new Application('Codememory');
+
+$config = new Config($filesystem);
+
+// Config
+$application->add(new ConfigCacheStateCommand());
+$application->add(new AllBindsCommand());
+$application->add(new RefreshConfigCacheCommand());
+$application->add(new StateBindsCacheCommand());
+
+// ENV
+$application->add(new DeleteEnvCacheCommand());
+$application->add(new UpdateEnvCacheCommand());
+
+// Routing
+$application->add(new MakeSoftwareCommand());
+$application->add(new RouteListCommand());
+
+// Global Config
+$application->add(new BackupCommand());
+$application->add(new InitConfigCommand());
+$application->add(new InitFromBackupCommand());
+$application->add(new MergeConfigCommand());
+
+// Controller
+$application->add(new MakeControllerCommand());
+
+// Translations
+$application->add(new RefreshTranslationsCacheCommand());
+
+// Validator
+$application->add(new MakeValidationCommand());
+
+// Database
+$databasePackConsole = new DatabasePackConsole($application, $connection);
+
+$databasePackConsole->addCommands();
+
+foreach ($config->open('console', throw: false)->get() ?: [] as $command) {
+    $application->add(new $command());
+}
+
+$application->run();
