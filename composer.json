@@ -56,6 +56,8 @@
         "post-create-project-cmd": [
             "@php -r \"copy('.env.example', '.env');\"",
             "@php bin/cdm g-config:merge --all",
+            "@php bin/cdm cache:update:config",
+            "@php bin/cdm cache:update:env",
             "chmod 711 bin/cdm"
         ]
     },
