@@ -1,11 +1,11 @@
 database:
   # Orm settings
   orm:
-    pathWithEntities: app/Entities # The path to all entities
-    entityNamespace: App\Entities  # The namespace in which all entities are located
+    pathWithEntities: app/Orm/Entities # The path to all entities
+    entityNamespace: App\Orm\Entities  # The namespace in which all entities are located
     entitySuffix: Entity # File suffix that denotes the entity
-    pathWithRepositories: app/Repositories # The path to all repositories
-    repositoryNamespace: App\Repositories # The namespace in which all repositories are located
+    pathWithRepositories: app/Orm/Repositories # The path to all repositories
+    repositoryNamespace: App\Orm\Repositories # The namespace in which all repositories are located
     repositorySuffix: Repository # File suffix that denotes the repository
 
   # Migration settings
