@@ -58,6 +58,7 @@
             "@php bin/cdm g-config:merge --all",
             "@php bin/cdm cache:update:config",
             "@php bin/cdm cache:update:env",
+            "chmod 766 storage/ -R",
             "chmod 711 bin/cdm"
         ]
     },
