@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Codememory\Components\Asset\Asset;
 use Kernel\AbstractController;
 
 /**
@@ -20,7 +21,7 @@ class MainController extends AbstractController
     public function main(): void
     {
 
-        $this->render('codememory', [
+        $this->render('default.codememory', [
             'controller' => __CLASS__,
             'method'     => __METHOD__
         ]);
