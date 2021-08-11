@@ -9,4 +9,4 @@ controlResponseCode:
 
   # Response code
   404:
-    view: notFound
+    view: default.notFound
