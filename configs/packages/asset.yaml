@@ -1,0 +1,13 @@
+asset:
+  # Resource paths
+  paths:
+    dist: public/Dist
+    assets: public/Assets
+
+  # Active path that will be substituted as a prefix
+  activeOutput: assets
+
+  # File aliases
+  aliases:
+    - "images/codememory.svg@cdm-svg-logo"
+    - "images/codememory_icon.png@cdm-icon"

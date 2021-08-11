@@ -57,7 +57,7 @@
     "pathWithTranslations": "translations\/",
     "configName": "translation"
   },
-  "version": 1.1,
+  "version": 1.2,
   "validator": {
     "configName": "validator",
     "checkExistRules": true
@@ -95,5 +95,8 @@
     "pathWithModels": "app\/Models",
     "namespaceModel": "App\\Models",
     "modelSuffix": "Model"
+  },
+  "asset": {
+    "configName": "asset"
   }
 }
