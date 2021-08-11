@@ -7,12 +7,14 @@ use Codememory\Components\Configuration\Commands\RefreshConfigCacheCommand;
 use Codememory\Components\Configuration\Commands\StateBindsCacheCommand;
 use Codememory\Components\Configuration\Config;
 use Codememory\Components\Database\Connection\Connection;
+use Codememory\Components\Database\Pack\Console as DatabasePackConsole;
 use Codememory\Components\Environment\Commands\DeleteEnvCacheCommand;
 use Codememory\Components\Environment\Commands\UpdateEnvCacheCommand;
 use Codememory\Components\GlobalConfig\Commands\BackupCommand;
 use Codememory\Components\GlobalConfig\Commands\InitConfigCommand;
 use Codememory\Components\GlobalConfig\Commands\InitFromBackupCommand;
 use Codememory\Components\GlobalConfig\Commands\MergeConfigCommand;
+use Codememory\Components\Model\Commands\MakeModelCommand;
 use Codememory\Components\Translator\Commands\RefreshTranslationsCacheCommand;
 use Codememory\Components\Validator\Commands\MakeValidationCommand;
 use Codememory\FileSystem\File;
@@ -20,7 +22,6 @@ use Codememory\Routing\Commands\MakeSoftwareCommand;
 use Codememory\Routing\Commands\RouteListCommand;
 use Kernel\Commands\MakeControllerCommand;
 use Symfony\Component\Console\Application;
-use Codememory\Components\Database\Pack\Console as DatabasePackConsole;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -52,6 +53,9 @@ $application->add(new MergeConfigCommand());
 
 // Controller
 $application->add(new MakeControllerCommand());
+
+// Model
+$application->add(new MakeModelCommand());
 
 // Translations
 $application->add(new RefreshTranslationsCacheCommand());
