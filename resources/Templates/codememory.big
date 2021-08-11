@@ -10,11 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="shortcut icon" href="[[ assetAliasPath('cdm-icon') ]]" type="image/x-icon">
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="/public/Assets/images/codememory.svg" alt="Codememory">
+            <img src="[[ assetAliasPath('cdm-svg-logo') ]]" alt="Codememory">
         </div>
         <div class="header">
             <h1>Welcome to Codememory</h1>
@@ -142,8 +143,8 @@
         }
 
         .links a:hover:after{
-            left: 0px;
-            top: 0px;
+            left: 0;
+            top: 0;
         }
 
         .links a > i {
