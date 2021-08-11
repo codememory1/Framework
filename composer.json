@@ -17,6 +17,7 @@
         "ext-iconv": "*",
         "ext-pdo": "*",
         "ext-redis": "*",
+        "codememory/asset": "^1.0",
         "codememory/big": "^1.1",
         "codememory/caching": "^1.1",
         "codememory/config": "^1.1",
@@ -41,6 +42,7 @@
         "codememory/validator": "^1.0",
         "codememory/view": "v1.0.1",
         "illuminate/collections": "^8.45",
+        "symfony/error-handler": "^5.3",
         "twig/twig": "^3.3"
     },
     "autoload": {
