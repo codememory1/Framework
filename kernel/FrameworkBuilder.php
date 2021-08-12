@@ -5,8 +5,10 @@ namespace Kernel;
 use Codememory\Component\Toolbar\Toolbar;
 use Codememory\Components\Caching\Cache;
 use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
+use Codememory\Components\Configuration\Config;
 use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
 use Codememory\Components\Configuration\Exceptions\NotOpenConfigException;
+use Codememory\Components\Configuration\Interfaces\ConfigInterface;
 use Codememory\Components\DateTime\DateTime;
 use Codememory\Components\DateTime\Time;
 use Codememory\Components\Environment\Environment;
@@ -47,6 +49,11 @@ class FrameworkBuilder
 {
 
     /**
+     * @var ConfigInterface
+     */
+    private ConfigInterface $frameworkConfig;
+
+    /**
      * Kernel constructor.
      *
      * @throws ConfigNotFoundException
@@ -68,6 +75,9 @@ class FrameworkBuilder
 
         $this->initialization();
         $this->checkFrameworkVersion();
+
+        $this->frameworkConfig = (new Config(new File()))->open('framework');
+
         $this->initToolbar();
 
     }
@@ -178,7 +188,8 @@ class FrameworkBuilder
     private function initToolbar(): void
     {
 
-        if(isDev()) {
+        if(isDev() && $this->frameworkConfig->get('toolbar')
+            || $this->frameworkConfig->get('toolbarInProduction')) {
             (new Toolbar())->connectToolbar();
         }
 

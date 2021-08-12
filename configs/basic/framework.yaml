@@ -4,3 +4,10 @@ framework:
 
   # Controller namespace
   namespaceForControllers: App\Controllers
+
+  # Show toolbar
+  toolbar: true
+
+  # Show toolbar in production mode
+  # Note! The page loading speed may decrease if the value is "true"
+  toolbarInProduction: false
