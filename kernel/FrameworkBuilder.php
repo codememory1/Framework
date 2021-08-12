@@ -188,8 +188,8 @@ class FrameworkBuilder
     private function initToolbar(): void
     {
 
-        if(isDev() && $this->frameworkConfig->get('toolbar')
-            || $this->frameworkConfig->get('toolbarInProduction')) {
+        if(isDev() && $this->frameworkConfig->get('toolbar.enabled')
+            || $this->frameworkConfig->get('toolbar.enabledInProduction')) {
             (new Toolbar())->connectToolbar();
         }
 
