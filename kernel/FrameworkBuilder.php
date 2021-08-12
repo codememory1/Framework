@@ -2,9 +2,9 @@
 
 namespace Kernel;
 
+use Codememory\Component\Toolbar\Toolbar;
 use Codememory\Components\Caching\Cache;
 use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
-use Codememory\Components\Collectors\CssCollector;
 use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
 use Codememory\Components\Configuration\Exceptions\NotOpenConfigException;
 use Codememory\Components\DateTime\DateTime;
@@ -68,6 +68,7 @@ class FrameworkBuilder
 
         $this->initialization();
         $this->checkFrameworkVersion();
+        $this->initToolbar();
 
     }
 
@@ -163,24 +164,24 @@ class FrameworkBuilder
 
         if (isDev()) {
             $frameworkPackage = new FrameworkPackage();
-            $cssCollector = new CssCollector();
-
-            $styles = [
-                'background'    => '#e22424',
-                'color'         => '#fff',
-                'padding'       => '10px 20px',
-                'border-radius' => '3px',
-                'font-weight'   => 600,
-                'font-family'   => 'monospace',
-                'position'      => 'absolute',
-                'right'         => '10px'
-            ];
 
             if ($frameworkPackage->last() > $frameworkPackage->current()) {
-                echo sprintf('<span style="%s">There is a new version of the framework <b>%s</b>!<span>', $cssCollector->toString($styles), $frameworkPackage->last());
+                $_SERVER['CDM_INFO'][] = sprintf('There is a new version of the framework <b>%s</b>!', $frameworkPackage->last());
             }
 
         }
+    }
+
+    /**
+     * @return void
+     */
+    private function initToolbar(): void
+    {
+
+        if(isDev()) {
+            (new Toolbar())->connectToolbar();
+        }
+
     }
 
 }

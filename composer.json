@@ -38,19 +38,29 @@
         "codememory/routing": "^1.0",
         "codememory/service-provider": "1.0.1",
         "codememory/support": "^1.2",
+        "codememory/toolbar": "^1.0",
         "codememory/translator": "1.1",
         "codememory/validator": "^1.0",
         "codememory/view": "v1.0.1",
         "illuminate/collections": "^8.45",
+        "mcaskill/composer-exclude-files": "^2.0",
         "symfony/error-handler": "^5.3",
         "twig/twig": "^3.3"
+    },
+    "extra": {
+        "exclude-from-files": [
+            "symfony/var-dumper/Resources/functions/dump.php"
+        ]
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Migrations\\": "migrations/",
             "Kernel\\": "kernel/"
-        }
+        },
+        "files": [
+            "kernel/helpers.php"
+        ]
     },
     "require-dev": {
         "symfony/var-dumper": "^5.3"
