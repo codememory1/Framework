@@ -34,6 +34,7 @@
         "codememory/mailer": "^1.0",
         "codememory/markup": "2.0",
         "codememory/model": "^1.0",
+        "codememory/profiling": "^1.0@alpha",
         "codememory/redis": "^1.0",
         "codememory/routing": "^1.0",
         "codememory/service-provider": "1.0.1",
