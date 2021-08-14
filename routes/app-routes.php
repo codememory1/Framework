@@ -12,7 +12,11 @@ use Codememory\Components\Profiling\Profiler;
  */
 
 Router::get('/__cdm-profiler', function () {
-    $profiler = new Profiler();
+    if(isDev()) {
+        $profiler = new Profiler();
 
-    $profiler->connectTemplate();
+        $profiler->connectTemplate();
+    } else {
+        responseCode(404);
+    }
 });
