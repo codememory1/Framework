@@ -10,6 +10,9 @@ use Codememory\Components\Database\Connection\Connection;
 use Codememory\Components\Database\Pack\Console as DatabasePackConsole;
 use Codememory\Components\Environment\Commands\DeleteEnvCacheCommand;
 use Codememory\Components\Environment\Commands\UpdateEnvCacheCommand;
+use Codememory\Components\Event\Commands\ListenerListCommand;
+use Codememory\Components\Event\Commands\ListEventsCommand;
+use Codememory\Components\Event\Commands\MakeEventCommand;
 use Codememory\Components\GlobalConfig\Commands\BackupCommand;
 use Codememory\Components\GlobalConfig\Commands\InitConfigCommand;
 use Codememory\Components\GlobalConfig\Commands\InitFromBackupCommand;
@@ -62,6 +65,11 @@ $application->add(new RefreshTranslationsCacheCommand());
 
 // Validator
 $application->add(new MakeValidationCommand());
+
+// Event Dispatcher
+$application->add(new MakeEventCommand());
+$application->add(new ListEventsCommand());
+$application->add(new ListenerListCommand());
 
 // Database
 $databasePackConsole = new DatabasePackConsole($application, $connection);
