@@ -57,7 +57,7 @@
     "pathWithTranslations": "translations\/",
     "configName": "translation"
   },
-  "version": 1.4,
+  "version": 1.6,
   "validator": {
     "configName": "validator",
     "checkExistRules": true
@@ -98,5 +98,14 @@
   },
   "asset": {
     "configName": "asset"
+  },
+  "event-dispatcher": {
+    "configName": "event",
+    "pathWithEvents": "Events",
+    "eventNamespace": "Events",
+    "eventSuffix": "Event",
+    "pathWithListeners": "Listeners",
+    "listenerNamespace": "Listeners",
+    "listenerSuffix": "Listener"
   }
 }
