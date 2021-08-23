@@ -57,7 +57,7 @@
     "pathWithTranslations": "translations\/",
     "configName": "translation"
   },
-  "version": 1.6,
+  "version": 1.7,
   "validator": {
     "configName": "validator",
     "checkExistRules": true
