@@ -20,7 +20,7 @@
     "pathWithFile": null,
     "filename": ".env",
     "defaultAppMode": "dev",
-    "useCache": true
+    "useCache": false
   },
   "http": {
     "configName": "http"
@@ -37,7 +37,7 @@
     }
   },
   "serviceProvider": {
-    "configName": "providers"
+    "configName": "services"
   },
   "view": {
     "configName": "view",
@@ -45,25 +45,21 @@
     "engine": "Codememory\\Components\\View\\Engines\\BigEngine"
   },
   "logging": {
-    "configName": "logging",
+    "configName": "logger",
     "defaultType": "file",
     "pathToLogger": "storage\/logs\/loggers.log"
   },
-  "doctrine": {
-    "configName": "doctrine"
+  "profiler": {
+    "configName": "profiling",
+    "mode": "dev",
+    "enabled": true,
+    "security": {
+      "subdomain": "profiler",
+      "enabledInProduction": false
+    }
   },
-  "translation": {
-    "defaultLanguage": "en",
-    "pathWithTranslations": "translations\/",
-    "configName": "translation"
-  },
-  "version": 1.7,
-  "validator": {
-    "configName": "validator",
-    "checkExistRules": true
-  },
-  "database": {
-    "configName": "database"
+  "asset": {
+    "configName": "asset"
   },
   "database-pack": {
     "defaultHost": "localhost",
@@ -78,6 +74,12 @@
     "namespaceMigration": "Migrations\\",
     "configName": "database"
   },
+  "model": {
+    "configName": "model",
+    "pathWithModels": "app\/Models",
+    "namespaceModel": "App\\Models",
+    "modelSuffix": "Model"
+  },
   "orm": {
     "pathWithEntities": "App\/Entity",
     "entityNamespace": "App\\Entity\\",
@@ -87,17 +89,9 @@
     "repositorySuffix": "Repository",
     "configName": "database"
   },
-  "mail": {
-    "configName": "mailer"
-  },
-  "model": {
-    "configName": "model",
-    "pathWithModels": "app\/Models",
-    "namespaceModel": "App\\Models",
-    "modelSuffix": "Model"
-  },
-  "asset": {
-    "configName": "asset"
+  "validator": {
+    "configName": "validator",
+    "checkExistRules": true
   },
   "event-dispatcher": {
     "configName": "event",
@@ -108,13 +102,13 @@
     "listenerNamespace": "Listeners",
     "listenerSuffix": "Listener"
   },
-  "profiler": {
-    "configName": "profiling",
-    "mode": "dev",
-    "enabled": true,
-    "security": {
-      "subdomain": "profiler",
-      "enabledInProduction": false
-    }
-  }
+  "mail": {
+    "configName": "mailer"
+  },
+  "translation": {
+    "defaultLanguage": "en",
+    "pathWithTranslations": "translations\/",
+    "configName": "translation"
+  },
+  "version": 2.0
 }

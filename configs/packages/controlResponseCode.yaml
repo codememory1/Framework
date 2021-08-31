@@ -5,8 +5,8 @@ controlResponseCode:
     priority: view
 
     # The name of the template engine with which the template will be loaded
-    engine: big
+    engine: twig
 
   # Response code
   404:
-    view: default.notFound
+    view: default.404

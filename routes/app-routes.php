@@ -10,4 +10,4 @@ use Codememory\Routing\Router;
  *
  */
 
-Router::get('test', 'App\Controllers\TestController#test');
+Router::get('/', 'App\Controllers\MainController#main')->name('index');

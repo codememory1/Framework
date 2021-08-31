@@ -3,14 +3,12 @@ profiling:
 
   profiler:
     enabled: true                             # Enable profiler work
-    controllerProfiling: false                # Enable profiling of controller code and public route method
 
     # List of pages to be profiled, by default, if the list is empty,
     # all open pages will be profiled, except for service pages
-    profilingPages:
-      - "/test"
+    profilingPages: {}
 
     # Profiler access security
     security:
       subdomain: "profiler-%env(app.secret)%"  # The subdomain for which the profiler will be available
-      enabledInProduction: true               # Allow access to the profiler in production mode
+      enabledInProduction: false               # Allow access to the profiler in production mode

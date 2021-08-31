@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome!</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="shortcut icon" href="[[ assetAliasPath('cdm-icon') ]]" type="image/x-icon">
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <img src="{{ assetAliasPath('cdm-svg-logo') }}" alt="Codememory">
+    </div>
+    <div class="header">
+        <h1>Welcome to Codememory</h1>
+    </div>
+    <br>
+    <p>
+        This is the default framework page that is displayed after installing codememory
+    </p>
+    <p>
+        Below is some information and useful links.
+    </p>
+    <div class="links">
+        <a href=""><i class="fas fa-book"></i>Documentation</a>
+        <a href="https://github.com/codememory1/framework"><i class="fab fa-github"></i>GitHub</a>
+    </div>
+    <div class="info">
+        <div>
+            <span>Controller: </span><span>{{ controller }}</span>
+        </div>
+        <div>
+            <span>Method </span><span>{{ method }}</span>
+        </div>
+        <div>
+            <span>Current Route: </span><span>{{ routePath('index') }}</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .info {
+        margin-top: 70px;
+        border-top: 5px solid #e85656;
+        border-bottom: 5px solid #e85656;
+    }
+
+    .info div{
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 20px;
+    }
+
+    .info div > span {
+        text-align: center;
+        letter-spacing: 2.5px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: #6a09ff0a;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 100px auto;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header span {
+        font-family: 'Merriweather Sans', sans-serif;
+        font-size: 1.5rem;
+    }
+
+    .logo img {
+        width: 500px;
+    }
+
+    h1 {
+        font-family: 'Merriweather Sans', sans-serif;
+    }
+
+    p,span {
+        font-family: 'Dosis', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: 70px;
+    }
+
+    .header h1 {
+        width: max-content;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 30px 50px;
+        border-radius: 8px;
+        color: #333;
+        font-size: 1.5rem;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: #333;
+        background: #fff;
+        padding: 10px 22px;
+        border-radius: 3px;
+        border: 1px solid #bfbfbf;
+        cursor: pointer;
+        position: relative;
+        margin: 20px;
+        transition: 0.3s ease;
+    }
+
+    .links a:after {
+        content: '';
+        background: #4a5ab1a6;
+        position: absolute;
+        width: 100%;
+        height: 110%;
+        z-index: -1;
+        left: -10px;
+        top: 5px;
+        transition: 0.3s ease;
+    }
+
+    .links a:hover:after{
+        left: 0;
+        top: 0;
+    }
+
+    .links a > i {
+        padding-right: 10px;
+    }
+
+    .links {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 70px;
+    }
+</style>
+</body>
+</html>

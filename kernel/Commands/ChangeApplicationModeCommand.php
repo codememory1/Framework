@@ -14,6 +14,7 @@ use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundExce
 use Codememory\Components\Environment\Exceptions\ParsingErrorException;
 use Codememory\Components\Environment\Exceptions\VariableParsingErrorException;
 use Codememory\FileSystem\File;
+use Exception;
 use ReflectionException;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
@@ -50,6 +51,7 @@ class ChangeApplicationModeCommand extends Command
      * @throws ParsingErrorException
      * @throws VariableParsingErrorException
      * @throws ReflectionException
+     * @throws Exception
      */
     protected function handler(InputInterface $input, OutputInterface $output): int
     {

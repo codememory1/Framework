@@ -6,4 +6,7 @@ view:
   useCache: true
 
   # Which template engine to use to load the template
-  engine: Codememory\Components\View\Engines\BigEngine
+  engine: Codememory\Components\View\Engines\TwigEngine
+
+  # Expanding twig
+  twigExpander: Kernel\Twig\TwigExpander

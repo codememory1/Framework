@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use Kernel\AbstractController;
-
+use Kernel\Controller\AbstractController;
 
 /**
  * Class MainController

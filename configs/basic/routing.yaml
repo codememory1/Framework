@@ -11,10 +11,4 @@ routing:
     routesFileSuffix: '-routes'
 
   # Created routes
-  _routes:
-    index:
-      path: '/'
-      method: 'GET'
-      class:
-        controller: App\Controllers\MainController
-        method: main
+  _routes: {}

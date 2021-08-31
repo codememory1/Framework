@@ -16,8 +16,8 @@ mailer:
       # List of users from whom the message will be sent
       from:
         - {
-            email: "%env(mail.username)%",
-            name: "%env(mail.name)%"
+          email: "%env(mail.username)%",
+          name: "%env(mail.name)%"
         }
 
   # Active user who will be authorized by default

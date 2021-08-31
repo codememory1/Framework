@@ -8,8 +8,4 @@ logging:
     recordingFormat: "[*datetime*] *level_name* > *message* *context* *extra*\n"
 
   # Creation of loggers
-  _loggers:
-    createUser:
-      type: redis
-      redisKey: monolog
-      level: warning
+  _loggers: {}

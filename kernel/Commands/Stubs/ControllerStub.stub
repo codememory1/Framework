@@ -19,7 +19,7 @@ class {className} extends AbstractController
 
         $this->get('response')
         	->setContent('Hello, {className}')->sendContent();
-        
+
         return true;
 
     }

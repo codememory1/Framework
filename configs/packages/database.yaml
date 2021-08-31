@@ -25,9 +25,3 @@ database:
         username: '%env(db.username)%'
         password: '%env(db.password)%'
         driver: 'Codememory\Components\Database\Connection\Drivers\MySQLDriver'
-      danil2:
-        host: '%env(db.host)%'
-        dbname: 'danil2'
-        username: '%env(db.username)%'
-        password: '%env(db.password)%'
-        driver: 'Codememory\Components\Database\Connection\Drivers\MySQLDriver'
