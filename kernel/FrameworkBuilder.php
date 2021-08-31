@@ -21,12 +21,15 @@ use Codememory\Components\JsonParser\Exceptions\JsonErrorException;
 use Codememory\Components\JsonParser\JsonParser;
 use Codememory\Components\Logging\Logging;
 use Codememory\Components\Markup\Types\YamlType;
+use Codememory\Components\Profiling\Profiler;
+use Codememory\Components\Profiling\Utils as ProfilingUtils;
 use Codememory\Container\ServiceProvider\Interfaces\InjectionProviderInterface;
 use Codememory\Container\ServiceProvider\Interfaces\ServiceProviderInterface;
 use Codememory\Database\Redis\Connections\Connection;
 use Codememory\Database\Redis\RedisManager;
 use Codememory\FileSystem\File;
 use Codememory\HttpFoundation\Client\Header\Header;
+use Codememory\HttpFoundation\Client\Url;
 use Codememory\HttpFoundation\ControlHttpStatus\ControlResponseCode;
 use Codememory\HttpFoundation\Request\Request;
 use Codememory\HttpFoundation\Response\Response;
@@ -111,6 +114,7 @@ class FrameworkBuilder
 
     /**
      * @throws ConfigNotFoundException
+     * @throws ConfigPathNotExistException
      * @throws ConstructorNotInitializedException
      * @throws EnvironmentVariableNotFoundException
      * @throws IncorrectControllerException
@@ -120,15 +124,17 @@ class FrameworkBuilder
      * @throws ParsingErrorException
      * @throws SingleConstructorInitializationException
      * @throws VariableParsingErrorException
-     * @throws ConfigPathNotExistException
      */
     private function initialization(): void
     {
 
         Environment::__constructStatic(new File());
 
-        $this->initializationRouting();
-        $this->initializationControlResponseCode();
+        $statusInitRouter = $this->initializationRouting();
+
+        if($statusInitRouter) {
+            $this->initializationControlResponseCode();
+        }
 
     }
 
@@ -143,13 +149,19 @@ class FrameworkBuilder
      * @throws SingleConstructorInitializationException
      * @throws VariableParsingErrorException
      */
-    private function initializationRouting(): void
+    private function initializationRouting(): bool
     {
 
         Router::__constructStatic(new Request());
         Router::initializingRoutesFromConfig();
 
+        Profiler::init();
+
+        $this->initializationProfiler();
+
         Router::processAllRoutes();
+
+        return true;
 
     }
 
@@ -185,10 +197,24 @@ class FrameworkBuilder
     /**
      * @return void
      */
+    private function initializationProfiler(): void
+    {
+
+        $url = new Url();
+        $profilingUtils = new ProfilingUtils();
+        $link = sprintf('%s%s.%s', $url->getScheme(), $profilingUtils->profilerSubdomain(), $url->getHost());
+
+        $_SERVER['CDM_INFO'][] = sprintf('Link to profiler page <a href="%s">Profiler</a>', $link);
+
+    }
+
+    /**
+     * @return void
+     */
     private function initToolbar(): void
     {
 
-        if(isDev() && $this->frameworkConfig->get('toolbar.enabled')
+        if (isDev() && $this->frameworkConfig->get('toolbar.enabled')
             || $this->frameworkConfig->get('toolbar.enabledInProduction')) {
             (new Toolbar())->connectToolbar();
         }

@@ -1,7 +1,6 @@
 <?php
 
 use Codememory\Routing\Router;
-use Codememory\Components\Profiling\Profiler;
 
 /**
  *
@@ -11,12 +10,4 @@ use Codememory\Components\Profiling\Profiler;
  *
  */
 
-Router::get('/__cdm-profiler', function () {
-    if(isDev()) {
-        $profiler = new Profiler();
-
-        $profiler->connectTemplate();
-    } else {
-        responseCode(404);
-    }
-});
+Router::get('test', 'App\Controllers\TestController#test');

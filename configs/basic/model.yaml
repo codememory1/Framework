@@ -1,0 +1,4 @@
+model:
+  pathWithModels: app/Models  # Path with model files
+  namespaceModel: App\Models   # Namespace model
+  modelSuffix: Model          # Model file suffix

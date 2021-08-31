@@ -107,5 +107,14 @@
     "pathWithListeners": "Listeners",
     "listenerNamespace": "Listeners",
     "listenerSuffix": "Listener"
+  },
+  "profiler": {
+    "configName": "profiling",
+    "mode": "dev",
+    "enabled": true,
+    "security": {
+      "subdomain": "profiler",
+      "enabledInProduction": false
+    }
   }
 }

@@ -12,4 +12,4 @@ logging:
     createUser:
       type: redis
       redisKey: monolog
-      level: error
+      level: warning

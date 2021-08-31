@@ -35,7 +35,7 @@
         "codememory/mailer": "^1.0",
         "codememory/markup": "2.0",
         "codememory/model": "^1.0",
-        "codememory/profiling": "^1.0@alpha",
+        "codememory/profiling": "2.0",
         "codememory/redis": "^1.0",
         "codememory/routing": "^1.0",
         "codememory/service-provider": "1.0.1",
@@ -47,7 +47,8 @@
         "illuminate/collections": "^8.45",
         "mcaskill/composer-exclude-files": "^2.0",
         "symfony/error-handler": "^5.3",
-        "twig/twig": "^3.3"
+        "twig/twig": "^3.3",
+        "ext-xhprof": "*"
     },
     "extra": {
         "exclude-from-files": [
