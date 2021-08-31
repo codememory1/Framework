@@ -20,7 +20,7 @@
     "pathWithFile": null,
     "filename": ".env",
     "defaultAppMode": "dev",
-    "useCache": false
+    "useCache": true
   },
   "http": {
     "configName": "http"
