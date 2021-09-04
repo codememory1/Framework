@@ -71,8 +71,8 @@
             "@php -r \"copy('.env.example', '.env');\"",
             "@php bin/cdm g-config:merge --all",
             "@php bin/cdm cache:update:config",
-            "@php bin/cdm cache:update:env",
             "@php bin/cdm app:secret-key:generate",
+            "@php bin/cdm cache:update:env",
             "chmod 777 storage/ -R",
             "chmod 711 bin/cdm"
         ]
