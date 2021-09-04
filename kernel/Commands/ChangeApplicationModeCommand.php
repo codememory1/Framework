@@ -67,7 +67,6 @@ class ChangeApplicationModeCommand extends Command
 
             return $mode;
         });
-        $activeMode = null;
 
         Environment::change(function (mixed &$data) use ($mode) {
             $data['APP']['MODE'] = $mode;
@@ -82,13 +81,11 @@ class ChangeApplicationModeCommand extends Command
                     new UpdateEnvCacheCommand(),
                 ])
                 ->addCommand(function (ResourcesCommand $resourcesCommand) {
-                    $resourcesCommand->commandToExecute('cache:update:config');
+                    $resourcesCommand->commandToExecute('cache:update:env');
                 })
                 ->addCommand(function (ResourcesCommand $resourcesCommand) {
-                    $resourcesCommand->commandToExecute('cache:update:env');
+                    $resourcesCommand->commandToExecute('cache:update:config');
                 });
-
-            $activeMode = self::PROD;
         } else if (self::DEV === $mode) {
             $consoleRunning
                 ->addCommands([
@@ -97,14 +94,12 @@ class ChangeApplicationModeCommand extends Command
                 ->addCommand(function (ResourcesCommand $resourcesCommand) {
                     $resourcesCommand->commandToExecute('cache:update:env');
                 });
-
-            $activeMode = self::DEV;
         }
 
         $consoleRunning->run();
 
-        GlobalConfig::change(function (array &$data) use ($activeMode) {
-            $data['configuration']['mode'] = $activeMode;
+        GlobalConfig::change(function (array &$data) use ($mode) {
+            $data['configuration']['mode'] = $mode;
         });
 
         $this->io->success(sprintf('Application mode successfully changed to %s', $mode));
