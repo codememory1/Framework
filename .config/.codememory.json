@@ -109,6 +109,6 @@
     "version": 3.0,
     "configuration": {
         "pathWithConfigs": "configs\/",
-        "mode": "production"
+        "mode": "development"
     }
 }
