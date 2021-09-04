@@ -2,11 +2,6 @@
 
 namespace Kernel;
 
-use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
-use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
-use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
-use Codememory\Components\Environment\Exceptions\ParsingErrorException;
-use Codememory\Components\Environment\Exceptions\VariableParsingErrorException;
 use Codememory\FileSystem\File;
 use Codememory\HttpFoundation\Client\Header\Header;
 use Codememory\HttpFoundation\Request\Request;
@@ -48,11 +43,7 @@ final class ObjectInitializer
     public static FrameworkConfiguration $frameworkConfiguration;
 
     /**
-     * @throws ConfigPathNotExistException
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
+     * ObjectInitializer Construct
      */
     public function __construct()
     {
@@ -61,7 +52,7 @@ final class ObjectInitializer
         self::$request = new Request();
         self::$header = new Header();
         self::$response = new Response(self::$header);
-        self::$frameworkConfiguration = new FrameworkConfiguration(self::$filesystem);
+        self::$frameworkConfiguration = new FrameworkConfiguration();
 
     }
 

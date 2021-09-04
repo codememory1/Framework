@@ -4,8 +4,8 @@ namespace Kernel;
 
 use Codememory\Component\Toolbar\Toolbar;
 use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
-use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
-use Codememory\Components\Configuration\Exceptions\NotOpenConfigException;
+use Codememory\Components\Configuration\Configuration;
+use Codememory\Components\Configuration\Exceptions\ModeNotImplementInterfaceException;
 use Codememory\Components\Environment\Environment;
 use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
 use Codememory\Components\Environment\Exceptions\IncorrectPathToEnviException;
@@ -19,6 +19,9 @@ use Codememory\Routing\Exceptions\IncorrectControllerException;
 use Codememory\Routing\Exceptions\InvalidControllerMethodException;
 use Codememory\Routing\Exceptions\SingleConstructorInitializationException;
 use Codememory\Routing\Router;
+use Kernel\ConfigurationModeHandlers\DevelopmentMode;
+use Kernel\ConfigurationModeHandlers\ProductionMode;
+use ReflectionException;
 
 /**
  * Class Kernel
@@ -31,18 +34,24 @@ class Kernel
 {
 
     /**
-     * Kernel Construct
+     * @throws ModeNotImplementInterfaceException
+     * @throws ReflectionException
      */
     public function __construct()
     {
+
+        $this->overridingConfigModes();
 
         new ObjectInitializer();
 
     }
 
     /**
+     * =>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>
+     * Starts building the framework
+     * <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=
+     *
      * @return $this
-     * @throws ConfigNotFoundException
      * @throws ConfigPathNotExistException
      * @throws ConstructorNotInitializedException
      * @throws EnvironmentVariableNotFoundException
@@ -68,7 +77,6 @@ class Kernel
      * <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=
      *
      * @throws ConstructorNotInitializedException
-     * @throws NotOpenConfigException
      */
     public function run(): void
     {
@@ -87,7 +95,6 @@ class Kernel
      * <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=
      *
      * @return void
-     * @throws ConfigNotFoundException
      * @throws ConfigPathNotExistException
      * @throws ConstructorNotInitializedException
      * @throws EnvironmentVariableNotFoundException
@@ -191,6 +198,18 @@ class Kernel
     {
 
         $_SERVER['CDM_INFO'][] = $message;
+
+    }
+
+    /**
+     * @throws ModeNotImplementInterfaceException
+     * @throws ReflectionException
+     */
+    private function overridingConfigModes(): void
+    {
+
+        Configuration::getInstance()->addModeHandler(DevelopmentMode::class);
+        Configuration::getInstance()->addModeHandler(ProductionMode::class);
 
     }
 

@@ -2,14 +2,8 @@
 
 namespace Kernel;
 
-use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
-use Codememory\Components\Configuration\Config;
-use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
+use Codememory\Components\Configuration\Configuration;
 use Codememory\Components\Configuration\Interfaces\ConfigInterface;
-use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
-use Codememory\Components\Environment\Exceptions\ParsingErrorException;
-use Codememory\Components\Environment\Exceptions\VariableParsingErrorException;
-use Codememory\FileSystem\Interfaces\FileInterface;
 
 /**
  * Class FrameworkConfiguration
@@ -29,19 +23,12 @@ class FrameworkConfiguration
     private ConfigInterface $config;
 
     /**
-     * @param FileInterface $filesystem
      * @param array         $defaultConfig
-     *
-     * @throws ConfigPathNotExistException
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
-    public function __construct(FileInterface $filesystem, array $defaultConfig = [])
+    public function __construct(array $defaultConfig = [])
     {
 
-        $this->config = (new Config($filesystem))->open(self::CONFIG_NAME, $defaultConfig);
+        $this->config = Configuration::getInstance()->open(self::CONFIG_NAME, $defaultConfig);
 
     }
 

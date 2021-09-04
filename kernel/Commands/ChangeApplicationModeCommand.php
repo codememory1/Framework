@@ -19,6 +19,7 @@ use ReflectionException;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Codememory\Components\GlobalConfig\GlobalConfig;
 
 /**
  * Class ChangeApplicationModeCommand
@@ -58,10 +59,7 @@ class ChangeApplicationModeCommand extends Command
 
         Environment::__constructStatic(new File());
 
-        $modes = [
-            self::DEV,
-            self::PROD
-        ];
+        $modes = [static::DEV, static::PROD];
         $mode = $this->io->askWithAutocomplete('Select Application Mode', $modes, null, function (mixed $mode) use ($modes) {
             if (!in_array($mode, $modes)) {
                 throw new RuntimeException('Wrong mode selected');
@@ -69,6 +67,7 @@ class ChangeApplicationModeCommand extends Command
 
             return $mode;
         });
+        $activeMode = null;
 
         Environment::change(function (mixed &$data) use ($mode) {
             $data['APP']['MODE'] = $mode;
@@ -88,6 +87,8 @@ class ChangeApplicationModeCommand extends Command
                 ->addCommand(function (ResourcesCommand $resourcesCommand) {
                     $resourcesCommand->commandToExecute('cache:update:env');
                 });
+
+            $activeMode = self::PROD;
         } else if (self::DEV === $mode) {
             $consoleRunning
                 ->addCommands([
@@ -96,13 +97,19 @@ class ChangeApplicationModeCommand extends Command
                 ->addCommand(function (ResourcesCommand $resourcesCommand) {
                     $resourcesCommand->commandToExecute('cache:update:env');
                 });
+
+            $activeMode = self::DEV;
         }
 
         $consoleRunning->run();
 
+        GlobalConfig::change(function (array &$data) use ($activeMode) {
+            $data['configuration']['mode'] = $activeMode;
+        });
+
         $this->io->success(sprintf('Application mode successfully changed to %s', $mode));
 
-        return Command::SUCCESS;
+        return static::SUCCESS;
 
     }
 
