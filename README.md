@@ -12,16 +12,15 @@ composer create-project codememory/framework ./
 
 
 ## Структура папок
-`codememory` - Framework  
 │ ── __.config__  
-│ ── __app__  - Папка приложения  
+│ ── __app__  
 │&emsp;&emsp;│ ── __Controller__  
 │&emsp;&emsp;│ ── __Events__  
 │&emsp;&emsp;│ ── __Listeners__  
 │&emsp;&emsp;│ ── __Models__  
 │&emsp;&emsp;│ ── __Orm__  
-│&emsp;&emsp;&emsp;&emsp;│ ── __Entities__  
-│&emsp;&emsp;&emsp;&emsp;│ ── __Repositories__  
+│&emsp;&emsp;│&emsp;&emsp;│ ── __Entities__  
+│&emsp;&emsp;│&emsp;&emsp;│ ── __Repositories__  
 │&emsp;&emsp;│ ── __Software__    
 │&emsp;&emsp;│ ── __Validations__  
 │ ── __bin__  
