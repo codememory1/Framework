@@ -1,6 +1,11 @@
 profiling:
   mode: "%env(app.mode)%"
 
+  # Error handler settings
+  errorHandler:
+    pathLogs: "%logger.path%"
+    logFilename: "server.log"
+
   profiler:
     enabled: true                             # Enable profiler work
 

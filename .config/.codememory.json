@@ -41,9 +41,7 @@
         "engine": "Codememory\\Components\\View\\Engines\\BigEngine"
     },
     "logging": {
-        "configName": "logger",
-        "defaultType": "file",
-        "pathToLogger": "storage\/logs\/loggers.log"
+        "configName": "logging"
     },
     "profiler": {
         "configName": "profiling",
@@ -106,7 +104,7 @@
         "pathWithTranslations": "translations\/",
         "configName": "translation"
     },
-    "version": 3.0,
+    "version": 3.1,
     "configuration": {
         "pathWithConfigs": "configs\/",
         "mode": "development"

@@ -30,7 +30,7 @@
         "codememory/global-config": "^1.1",
         "codememory/http-foundation": "^2.2",
         "codememory/json-parser": "^1.0",
-        "codememory/logging": "^1.0",
+        "codememory/logging": "2.0",
         "codememory/mailer": "^1.0",
         "codememory/markup": "^2.0",
         "codememory/model": "^1.1",
