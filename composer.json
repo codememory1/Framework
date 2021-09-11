@@ -36,7 +36,7 @@
         "codememory/model": "^1.1",
         "codememory/profiling": "^2.0",
         "codememory/redis": "^1.0",
-        "codememory/routing": "^1.2",
+        "codememory/routing": "^1.3",
         "codememory/service-provider": "^1.0",
         "codememory/support": "^1.2",
         "codememory/toolbar": "^1.0",
