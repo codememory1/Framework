@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controllers;
+namespace {namespace};
 
-use Kernel\AbstractController;
+use Kernel\Controller\AbstractController;
 
 /**
  * Class {className}
- * @package App\Controllers
+ * @package {namespace}
  */
 class {className} extends AbstractController
 {
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function web(): mixed
+    public function web(): bool
     {
 
         $this->get('response')

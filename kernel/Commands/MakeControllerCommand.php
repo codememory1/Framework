@@ -2,12 +2,8 @@
 
 namespace Kernel\Commands;
 
-use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
-use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
+use Codememory\Components\Configuration\Interfaces\ConfigInterface;
 use Codememory\Components\Console\Command;
-use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
-use Codememory\Components\Environment\Exceptions\ParsingErrorException;
-use Codememory\Components\Environment\Exceptions\VariableParsingErrorException;
 use Codememory\FileSystem\File;
 use Codememory\FileSystem\Interfaces\FileInterface;
 use Codememory\Support\Str;
@@ -52,24 +48,17 @@ class MakeControllerCommand extends Command
     }
 
     /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
-     * @return int
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
-     * @throws ConfigPathNotExistException
+     * @inheritDoc
      */
     protected function handler(InputInterface $input, OutputInterface $output): int
     {
 
         $filesystem = new File();
-        $frameworkConfig = (new FrameworkConfiguration($filesystem))->getConfig();
+        $frameworkConfig = (new FrameworkConfiguration())->getConfig();
 
         $stubController = file_get_contents($filesystem->getRealPath('kernel/Commands/Stubs/ControllerStub.stub'));
         $controllerNameWithSuffix = $input->getArgument('name') . 'Controller';
+        $controllerNamespace = $this->getControllerNamespace($input, $frameworkConfig);
         $fullPathWithController = sprintf(
             '%s/%s',
             trim($frameworkConfig->get('pathWithControllers'), '/'),
@@ -82,25 +71,32 @@ class MakeControllerCommand extends Command
                 'To recreate it, use the --re-create option'
             ]);
 
-            return Command::FAILURE;
+            return self::FAILURE;
         }
 
-        return $this->createController($filesystem, $controllerNameWithSuffix, $fullPathWithController, $stubController);
+        return $this->createController($filesystem, Str::trimToSymbol($controllerNameWithSuffix, '/', false), $controllerNamespace, $fullPathWithController, $stubController);
 
     }
 
     /**
      * @param FileInterface $filesystem
      * @param string        $controllerNameWithSuffix
+     * @param string        $namespaceController
      * @param string        $fullPathWithController
      * @param string        $stubController
      *
      * @return int
      */
-    private function createController(FileInterface $filesystem, string $controllerNameWithSuffix, string $fullPathWithController, string &$stubController): int
+    private function createController(FileInterface $filesystem, string $controllerNameWithSuffix, string $namespaceController, string $fullPathWithController, string &$stubController): int
     {
 
-        Str::replace($stubController, '{className}', $controllerNameWithSuffix);
+        Str::replace($stubController, ['{className}', '{namespace}'], [$controllerNameWithSuffix, $namespaceController]);
+
+        $controllerDir = Str::trimAfterSymbol($fullPathWithController, '/', false);
+
+        if(!$filesystem->exist($controllerDir)) {
+            $filesystem->mkdir($controllerDir, 0777, true);
+        }
 
         file_put_contents($filesystem->getRealPath($fullPathWithController . '.php'), $stubController);
 
@@ -109,7 +105,30 @@ class MakeControllerCommand extends Command
             sprintf('path: %s', $fullPathWithController . '.php')
         ]);
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
+
+    }
+
+    /**
+     * @param InputInterface  $input
+     * @param ConfigInterface $frameworkConfiguration
+     *
+     * @return string
+     */
+    private function getControllerNamespace(InputInterface $input, ConfigInterface $frameworkConfiguration): string
+    {
+
+        $controllerName = $input->getArgument('name');
+
+        Str::replace($controllerName, '/', '\\');
+
+        $controllerNamespace = sprintf(
+            '%s\\%s',
+            $frameworkConfiguration->get('namespaceForControllers'),
+            $controllerName
+        );
+
+        return Str::trimAfterSymbol($controllerNamespace, '\\', false);
 
     }
 
