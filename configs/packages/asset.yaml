@@ -5,7 +5,7 @@ asset:
     assets: public/assets/
 
   # Active path that will be substituted as a prefix
-  activeOutput: dist
+  activeOutput: assets
 
   # File aliases
   aliases:

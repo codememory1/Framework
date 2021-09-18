@@ -7,7 +7,7 @@ profiling:
     logFilename: "server.log"
 
   profiler:
-    enabled: true                             # Enable profiler work
+    enabled: false                             # Enable profiler work
 
     # List of pages to be profiled, by default, if the list is empty,
     # all open pages will be profiled, except for service pages
