@@ -4,10 +4,10 @@ namespace Kernel\Controller;
 
 use Codememory\Components\Database\Connection\Connection;
 use Codememory\Components\Database\Pack\DatabasePack;
-use Codememory\Components\Model\AbstractModel;
-use Codememory\Components\Model\Exceptions\ModelNotExistException;
-use Codememory\Components\Model\Model;
 use Codememory\Components\Profiling\Exceptions\BuilderNotCurrentSectionException;
+use Codememory\Components\Services\AbstractService;
+use Codememory\Components\Services\Exceptions\ServiceNotExistException;
+use Codememory\Components\Services\Service;
 use Codememory\Components\Validator\Manager as ValidatorManager;
 use Codememory\Container\ServiceProvider\Interfaces\ServiceProviderInterface;
 use Codememory\Routing\Controller\AbstractController as AbstractCdmController;
@@ -40,9 +40,9 @@ abstract class AbstractController extends AbstractCdmController
     private DatabasePack $databasePack;
 
     /**
-     * @var Model
+     * @var Service
      */
-    private Model $model;
+    private Service $service;
 
     /**
      * @param ServiceProviderInterface $serviceProvider
@@ -59,7 +59,7 @@ abstract class AbstractController extends AbstractCdmController
         $this->serviceProvider = $serviceProvider;
         $this->validatorManager = new ValidatorManager();
         $this->databasePack = new DatabasePack(new Connection());
-        $this->model = new Model();
+        $this->service = new Service();
 
         (new ControllerProfiling($this->serviceProvider))->profile();
 
@@ -103,19 +103,19 @@ abstract class AbstractController extends AbstractCdmController
     /**
      * @param string $name
      *
-     * @return AbstractModel
-     * @throws ModelNotExistException
+     * @return AbstractService
      * @throws ReflectionException
+     * @throws ServiceNotExistException
      */
-    protected function getModel(string $name): AbstractModel
+    protected function getService(string $name): AbstractService
     {
 
-        $modelReflector = $this->model->getModelReflector($name);
+        $modelReflector = $this->service->getServiceReflector($name);
 
-        /** @var AbstractModel $model */
-        $model = $modelReflector->newInstance($this->serviceProvider);
+        /** @var AbstractService $service */
+        $service = $modelReflector->newInstance($this->serviceProvider);
 
-        return $model;
+        return $service;
 
     }
 

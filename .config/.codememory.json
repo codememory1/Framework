@@ -68,11 +68,11 @@
         "namespaceMigration": "Migrations\\",
         "configName": "database"
     },
-    "model": {
-        "configName": "model",
-        "pathWithModels": "app\/Models",
-        "namespaceModel": "App\\Models",
-        "modelSuffix": "Model"
+    "service": {
+        "configName": "service",
+        "pathWithServices": "app\/Services",
+        "namespaceService": "App\\Services",
+        "serviceSuffix": "Service"
     },
     "orm": {
         "pathWithEntities": "App\/Entity",
@@ -104,7 +104,7 @@
         "pathWithTranslations": "translations\/",
         "configName": "translation"
     },
-    "version": 3.2,
+    "version": 4.0,
     "configuration": {
         "pathWithConfigs": "configs\/",
         "mode": "development"

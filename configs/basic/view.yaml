@@ -3,7 +3,7 @@ view:
   pathWithTemplates: 'resources/Templates/'
 
   # Whether to use the template cache
-  useCache: true
+  useCache: false
 
   # Which template engine to use to load the template
   engine: Codememory\Components\View\Engines\TwigEngine

@@ -18,7 +18,7 @@ use Codememory\Components\GlobalConfig\Commands\BackupCommand;
 use Codememory\Components\GlobalConfig\Commands\InitConfigCommand;
 use Codememory\Components\GlobalConfig\Commands\InitFromBackupCommand;
 use Codememory\Components\GlobalConfig\Commands\MergeConfigCommand;
-use Codememory\Components\Model\Commands\MakeModelCommand;
+use Codememory\Components\Services\Commands\MakeServiceCommand;
 use Codememory\Components\Translator\Commands\RefreshTranslationsCacheCommand;
 use Codememory\Components\Validator\Commands\MakeValidationCommand;
 use Codememory\FileSystem\File;
@@ -64,8 +64,8 @@ $application->add(new MergeConfigCommand());
 // Controller
 $application->add(new MakeControllerCommand());
 
-// Model
-$application->add(new MakeModelCommand());
+// Services
+$application->add(new MakeServiceCommand());
 
 // Translations
 $application->add(new RefreshTranslationsCacheCommand());
