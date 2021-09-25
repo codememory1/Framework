@@ -49,7 +49,7 @@ abstract class AbstractController extends AbstractCdmController
      *
      * @throws BuilderNotCurrentSectionException
      */
-    final public function __construct(ServiceProviderInterface $serviceProvider)
+    public function __construct(ServiceProviderInterface $serviceProvider)
     {
 
         (new ProviderRegistrar($serviceProvider))->register();
