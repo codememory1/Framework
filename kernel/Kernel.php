@@ -56,7 +56,6 @@ class Kernel
      * @throws ConstructorNotInitializedException
      * @throws EnvironmentVariableNotFoundException
      * @throws IncorrectControllerException
-     * @throws IncorrectPathToEnviException
      * @throws InvalidControllerMethodException
      * @throws ParsingErrorException
      * @throws SingleConstructorInitializationException
@@ -99,7 +98,6 @@ class Kernel
      * @throws ConstructorNotInitializedException
      * @throws EnvironmentVariableNotFoundException
      * @throws IncorrectControllerException
-     * @throws IncorrectPathToEnviException
      * @throws InvalidControllerMethodException
      * @throws ParsingErrorException
      * @throws SingleConstructorInitializationException

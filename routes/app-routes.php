@@ -1,6 +1,7 @@
 <?php
 
 use Codememory\Routing\Router;
+use App\Controllers\MainController;
 
 /**
  *
@@ -10,4 +11,4 @@ use Codememory\Routing\Router;
  *
  */
 
-Router::get('/', 'App\Controllers\MainController#main')->name('index');
+Router::get('/', [MainController::class, 'main'])->name('index');
