@@ -1,0 +1,12 @@
+pathToCommands: '%path_app%/commands'
+namespaceToCommands: '%namespace_app%\\Commands'
+suffix: 'Command'
+
+# Список комманд
+commands:
+  - {
+      name: 'make:controller'
+      class: 'MakeController'       # Относительно namespaceToCommands и без suffix
+      arguments:
+        filesystem: '%provider=fs%' # Передача в аргумент с именем filesystem, провайдер fs -> filesystem
+  }

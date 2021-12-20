@@ -1,0 +1,25 @@
+binds:
+  private path_database: '/database'
+  private namespace_database: 'Database'
+  private path_orm: '/app/orm'
+  private namespace_orm: 'App\\Orm'
+
+# Настройки миграций
+migrations:
+  pathToMigrations: '%path_database%/migrations'
+  namespaceToMigrations: '%namespace_database%\\Migrations'
+
+  connectors:
+    default: '%provider=databaseDefaultConnector%'
+    default2: '%provider=databaseDefault2Connector%'
+
+  # По умолчанию активный коннектор "default", но если он вернет не "true", то будет выбран коннектор автоматически
+  activeConnector: default | $auto
+
+# Миграционные очереди, запустить keeper {после|перед} миграции
+migrationQueues:
+  before:
+    <migration_name>: <keeper_name>
+
+  after:
+    <migration_name>: <keeper_name>

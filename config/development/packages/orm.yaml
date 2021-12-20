@@ -1,0 +1,13 @@
+# Настройки ORM
+orm:
+  pathToEntities: '%path_orm%/entities'
+  namespaceToEntities: '%namespace_orm%\\Entities'
+
+  styles:
+    columnNameStyle:
+      fromCaseStyle: 'camelCase'  # camelCase | snake_case | kebab-case | PascalCase
+      toCaseStyle: 'snake_case'   # camelCase | snake_case | kebab-case | PascalCase
+
+    tableNameStyle:
+      literateNumber: null    # plural | singular
+      caseStyle: 'snake_case' # camelCase | snake_case | kebab-case | PascalCase

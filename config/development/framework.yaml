@@ -1,0 +1,3 @@
+binds:
+  path_app: '/app'
+  namespace_app: 'App'
